@@ -1,0 +1,332 @@
+<!--
+ * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @Date: 2024-01-30 15:40:19
+ * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @LastEditTime: 2024-01-30 17:14:06
+ * @FilePath: \app\templates\index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>Bootstrap 实例</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h1>表单</h1>
+    <div id="app">
+        <div class="container  row">
+            <div class="form-group col-6">
+                <label for="input1">摄像头数量:</label>
+                <input type="text" V-MODEL="sxt_number" class="form-control" id="input1"
+                    placeholder="Enter value for Input 1">
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">品牌厂商:</label>
+                <select class="form-control" id="dropdown" v-model="sxt_factory">
+                    <option v-for="f in sxt_opinions.factory_names" :value="f" v-text="f"></option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">产品分类:</label>
+                <select class="form-control" id="dropdown" v-model="sxt_classify">
+                    <option v-for="item in sxt_opinions.product_list" :value="item.value" v-text="item.label">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">夜视:</label>
+                <select class="form-control" id="dropdown" v-model="sxt_yeshi">
+                    <option v-for="item in sxt_opinions.yeshi_choices" :value="item.value" v-text="item.label">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">像素:</label>
+                <select class="form-control" id="dropdown" v-model="sxt_px">
+                    <option v-for="item in sxt_opinions.pxs" :value="item" v-text="item">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">焦距:</label>
+                <select class="form-control" id="dropdown" v-model="sxt_jiaoju">
+                    <option v-for="item in sxt_opinions.jiaoju" :value="item" v-text="item">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label class="form-check-label" for="sxt_ccfs"> 储存方式: </label>
+                <select class="form-control" id="sxt_ccfs" v-model="sxt_ccfs">
+                    <option value="硬盘">硬盘 </option>
+                    <option value="SD卡">SD卡 </option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="input1">储存时长（天数）:</label>
+                <input type="number" V-MODEL="sxt_ccsc" class="form-control" id="input1" placeholder="储存时长（天数）">
+            </div>
+
+
+            <div class="form-group col-6">
+                <label for="input1">AP数量:</label>
+                <input type="text" V-MODEL="ap_number" class="form-control" id="input1"
+                    placeholder="Enter value for Input 1">
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">品牌厂商:</label>
+                <select class="form-control" id="dropdown" v-model="ap_factory">
+                    <option v-for="f in sxt_opinions.factory_ap" :value="f" v-text="f"></option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">产品分类:</label>
+                <select class="form-control" id="dropdown" v-model="ap_classify">
+                    <option v-for="item in sxt_opinions.classify_ap" :value="item.value" v-text="item.label">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">WiFi几代:</label>
+                <select class="form-control" id="dropdown" v-model="ap_wifi_level">
+                    <option v-for="item in sxt_opinions.wifi_level_ap" :value="item.value" v-text="item.label">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">颜色:</label>
+                <select class="form-control" id="dropdown" v-model="ap_color">
+                    <option v-for="item in sxt_opinions.ap_color" :value="item" v-text="item">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="dropdown">WiFi速率:</label>
+                <select class="form-control" id="dropdown" v-model="wifi_sulv">
+                    <option v-for="item in sxt_opinions.lianjie_sulv_ap" :value="item" v-text="item">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group col-6">
+                <label for="input1">用户数:</label>
+                <input type="number" V-MODEL="user_number" class="form-control" id="input1" placeholder="用户数">
+            </div>
+
+
+            <div class="form-group col-6">
+                <button @click="submit_sxt_data" type="button" class="btn btn-primary">提交</button>
+            </div>
+            <div class="form-group col-6">
+                <button @click="save" type="button" class="btn btn-success">保存方案</button>
+            </div>
+        </div>
+        <!-- 渲染数据 -->
+        <div class="container mt-5" v-if="have_get_data">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">序号</th>
+                        <th scope="col">设备名称</th>
+                        <th scope="col">型号</th>
+                        <th scope="col">产品参数</th>
+                        <th scope="col">数量</th>
+                        <th scope="col">价格</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>摄像头</td>
+                        <td v-text="result_data.sxt[0].product_kind"></td>
+                        <td></td>
+                        <td v-text="result_data.sxt_sl"></td>
+                        <td v-text="result_data.sxt[0].xiaoshoujia"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>fc_zj</td>
+                        <td v-text="result_data.fc_zj[0].product_kind"></td>
+                        <td></td>
+                        <td v-text="result_data.fc_zj_sl"></td>
+                        <td v-text="result_data.fc_zj[0].xiaoshoujia"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>jhj</td>
+                        <td v-text="result_data.jhj[0].product_kind"></td>
+                        <td></td>
+                        <td v-text="result_data.jhj_sl"></td>
+                        <td v-text="result_data.jhj[0].xiaoshoujia"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>nvr</td>
+                        <td v-text="result_data.nvr[0].product_kind"></td>
+                        <td></td>
+                        <td v-text="result_data.nvr_sl"></td>
+                        <td v-text="result_data.nvr[0].xiaoshoujia"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>ypdx</td>
+                        <td v-text="result_data.ypdx[0].product_kind"></td>
+                        <td></td>
+                        <td v-text="result_data.ypdx_sl"></td>
+                        <td v-text="result_data.ypdx[0].xiaoshoujia"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            // 摄像头的选项
+            sxt_opinions: {
+                factory_names: [],
+                product_list: [],
+                yeshi_choices: [],
+                pxs: [],
+                jiaoju: [],
+                ap_color:[],
+                classify_ap:[],
+                wifi_level_ap:[],
+                lianjie_sulv_ap:[],
+                factory_ap:[],
+            },
+            sxt_number: 1,
+            sxt_factory: "",
+            sxt_classify: "",
+            sxt_yeshi: "",
+            sxt_px: "",
+            sxt_jiaoju: "",
+            sxt_ccfs: "",
+            sxt_ccsc: "",
+            ap_number: 1,
+            ap_factory: "",
+            ap_classify: "",
+            ap_color: "",
+            wifi_sulv: "",
+            ap_wifi_level:"",
+            user_number: 100,
+            // 后端返回的数据
+            have_get_data: false,
+            result_data: {
+                "sxt": [
+                    {
+                        "product_kind": "TL-IPC544EP",
+                        "xiaoshoujia": "201.00"
+                    }
+                ],
+                "sxt_sl": "2",
+                "fc_zj": [
+                    {
+                        "product_kind": "枪机支架",
+                        "xiaoshoujia": "1.50"
+                    }
+                ],
+                "fc_zj_sl": "2",
+                "jhj": [
+                    {
+                        "product_kind": "TL-SF1005P",
+                        "xiaoshoujia": "167.90"
+                    }
+                ],
+                "jhj_sl": 1,
+                "nvr": [
+                    {
+                        "product_kind": "TL-NVR6104C-L",
+                        "xiaoshoujia": "138.00"
+                    }
+                ],
+                "nvr_sl": 1,
+                "ypdx": [
+                    {
+                        "product_kind": "1T希捷酷鹰监控盘",
+                        "xiaoshoujia": "370.30"
+                    }
+                ],
+                "ypdx_sl": 1
+            },
+
+        },
+        methods: {
+            submit_sxt_data() {
+                $.ajax({
+                    url: '/api/myfasc/',  // 替换成你的后端 API 地址
+                    method: 'POST',  // 使用 GET 方法发送请求
+                    data: {
+                        sxt_number: app.sxt_number,
+                        sxt_factory: app.sxt_factory,
+                        sxt_classify: app.sxt_classify,
+                        sxt_yeshi: app.sxt_yeshi,
+                        sxt_px: app.sxt_px,
+                        sxt_ccfs: app.sxt_ccfs,
+                        sxt_ccsc: app.sxt_ccsc,
+                        ap_number: app.ap_number,
+                        ap_factory: app.ap_factory,
+                        ap_classify: app.ap_classify,
+                        ap_color: app.ap_color,
+                        wifi_sulv: app.wifi_sulv,
+                        ap_wifi_level:app.ap_wifi_level,
+                        user_number: app.user_number,
+                    },
+                    dataType: 'json',  // 期望后端返回的数据类型为 JSON
+                    success: function (data) {
+                        // 请求成功时执行的回调函数
+                        app.result_data = data.data;
+                        app.have_get_data = true;
+                        console.log(data.data)
+                    },
+                    error: function (error) {
+                        app.have_get_data = false;
+                        alert("Error fetching data:")
+                        // 请求失败时执行的回调函数
+                        console.error('Error fetching data:', error);
+                    }
+                });
+            },
+            save() {
+                if (app.have_get_data == false) {
+                    alert("请获取方案")
+                } else {
+                    alert("提交表单")
+                }
+            },
+        },
+    });
+
+    // 页面初始化时向后端发送请求
+    $(document).ready(function () {
+        $.ajax({
+            url: '/api/getSxtOpinions/',  // 替换成你的后端 API 地址
+            method: 'GET',  // 使用 GET 方法发送请求
+            dataType: 'json',  // 期望后端返回的数据类型为 JSON
+            success: function (data) {
+                // 请求成功时执行的回调函数
+                app.sxt_opinions = data.data;
+                console.log(app.sxt_opinions.factory_names)
+            },
+            error: function (error) {
+                alert("Error fetching data:")
+                // 请求失败时执行的回调函数
+                console.error('Error fetching data:', error);
+            }
+        });
+    });
+</script>
+
+</html>
